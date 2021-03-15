@@ -1,7 +1,8 @@
-import React, {Fragment, useState, useEffect} from "react";
-import {Button, CssBaseline} from "@material-ui/core";
+import React, {Fragment, useEffect, useState} from "react";
+import {CssBaseline} from "@material-ui/core";
 
 import STUDENT_SERVICE from "../service/student-service";
+import {MainLayout} from "../layouts";
 
 function App() {
     const [students, setStudents] = useState([]);
@@ -11,10 +12,14 @@ function App() {
             .then(data => setStudents(data));
     }, [])
 
+    const drawStudents = students.map(student => {
+        return <p key={student.uuid}>{student.firstName}</p>
+    })
+
     return (
         <Fragment>
             <CssBaseline/>
-            <Button variant={"contained"} color={"primary"}>{students.length}</Button>
+            <MainLayout/>
         </Fragment>
     )
 }
