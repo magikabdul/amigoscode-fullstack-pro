@@ -13,6 +13,7 @@ import {
 } from "@material-ui/core";
 import {StudentTableRow} from "./StudentTableRow";
 import STUDENT_SERVICE from "../../service/student-service";
+import {Loader} from "../index";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -44,10 +45,11 @@ function StudentsTable() {
             <Typography className={classes.title}>Students</Typography>
 
             <Box className={classes.body}>
+                <Loader/>
                 <TableContainer component={Paper}>
                     <Table size={"small"}>
                         <TableHead>
-                            <TableRow >
+                            <TableRow>
                                 <TableCell></TableCell>
                                 <TableCell>First Name</TableCell>
                                 <TableCell>Last Name</TableCell>
@@ -57,6 +59,7 @@ function StudentsTable() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
+
                             {students.map(student => <StudentTableRow key={student.uuid} student={student}/>)}
                         </TableBody>
                     </Table>
