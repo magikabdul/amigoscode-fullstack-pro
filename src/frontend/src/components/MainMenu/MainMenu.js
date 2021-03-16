@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-function MainMenu() {
+function MainMenu( {setShow} ) {
     const classes = useStyles();
     const [open, setOpen] = useState(true);
 
@@ -76,7 +76,7 @@ function MainMenu() {
                     }),
                 }}>
 
-                <MenuOptions/>
+                <MenuOptions setShow={setShow}/>
 
                 <Button className={classes.openButton} onClick={toggleDrawer} disableRipple fullWidth>
                     {open ? <ChevronLeft className={classes.icon}/> : <ChevronRight className={classes.icon}/>}

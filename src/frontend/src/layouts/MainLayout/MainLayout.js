@@ -1,8 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import {Box, makeStyles, Typography} from "@material-ui/core";
-import {MainMenu, StudentsTable} from "../../components";
+import {MainMenu, StudentsTable, TeamsTable} from "../../components";
 
-import logo from "../../assets/logo.jpg"
+import logo from "../../assets/logo.JPG"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -47,14 +47,16 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function MainLayout() {
+    const [show, setShow] = useState(true)
     const classes = useStyles();
 
     return (
         <Box className={classes.root}>
-            <MainMenu/>
+            <MainMenu setShow={setShow}/>
             <Box className={classes.container}>
                 <Box className={classes.header}/>
-                <StudentsTable/>
+                {show && <StudentsTable/>}
+                {!show && <TeamsTable/>}
                 <Box className={classes.footer}>
                     <Box className={classes.logo}/>
                     <Typography variant={"body2"} className={classes.copyright}>

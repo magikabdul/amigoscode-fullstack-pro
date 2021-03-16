@@ -1,18 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {
     Box,
     makeStyles,
     Paper,
     Table,
     TableBody,
-    TableCell,
     TableContainer,
     TableHead,
     TableRow,
     Typography
 } from "@material-ui/core";
-import {StudentTableRow} from "./StudentTableRow";
-import STUDENT_SERVICE from "../../service/student-service";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -30,34 +27,25 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-function StudentsTable() {
+function TeamsTable() {
     const classes = useStyles();
-    const [students, setStudents] = useState([]);
-
-    useEffect(() => {
-        STUDENT_SERVICE.getAllStudents()
-            .then(res => setStudents(res))
-    }, [])
 
     return (
         <Box className={classes.root}>
-            <Typography className={classes.title}>Students</Typography>
+            <Typography className={classes.title}>Teams</Typography>
 
             <Box className={classes.body}>
                 <TableContainer component={Paper}>
                     <Table size={"small"}>
                         <TableHead>
                             <TableRow >
-                                <TableCell></TableCell>
-                                <TableCell>First Name</TableCell>
-                                <TableCell>Last Name</TableCell>
-                                <TableCell>Gender</TableCell>
-                                <TableCell>Email</TableCell>
-                                <TableCell>Actions</TableCell>
+
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {students.map(student => <StudentTableRow key={student.uuid} student={student}/>)}
+                            <TableRow >
+
+                            </TableRow>
                         </TableBody>
                     </Table>
                 </TableContainer>
@@ -66,4 +54,4 @@ function StudentsTable() {
     )
 }
 
-export default StudentsTable;
+export default TeamsTable;

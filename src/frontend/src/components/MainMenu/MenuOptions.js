@@ -17,18 +17,18 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export function MenuOptions() {
+export function MenuOptions({setShow}) {
     const classes = useStyles();
 
     return (
         <List className={classes.root}>
-            <ListItem button>
+            <ListItem button onClick={() => setShow(true)}>
                 <ListItemIcon className={classes.itemIcon}>
                     <Person className={classes.icon}/>
                 </ListItemIcon>
                 <ListItemText primary={"Students"}/>
             </ListItem>
-            <ListItem button>
+            <ListItem button onClick={() => setShow(false)}>
                 <ListItemIcon className={classes.itemIcon}>
                     <Group className={classes.icon}/>
                 </ListItemIcon>
