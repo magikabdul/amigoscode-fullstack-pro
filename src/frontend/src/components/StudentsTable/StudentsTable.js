@@ -33,11 +33,16 @@ const useStyles = makeStyles((theme) => ({
 
 function StudentsTable() {
     const classes = useStyles();
+    const [isLoading, setIsLoading] = useState(false);
     const [students, setStudents] = useState([]);
 
     useEffect(() => {
+        setIsLoading(true);
         STUDENT_SERVICE.getAllStudents()
-            .then(res => setStudents(res))
+            .then(res => {
+                setStudents(res)
+                setIsLoading(false);
+            })
     }, [])
 
     return (
@@ -45,25 +50,24 @@ function StudentsTable() {
             <Typography className={classes.title}>Students</Typography>
 
             <Box className={classes.body}>
-                <Loader/>
-                <TableContainer component={Paper}>
-                    <Table size={"small"}>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell></TableCell>
-                                <TableCell>First Name</TableCell>
-                                <TableCell>Last Name</TableCell>
-                                <TableCell>Gender</TableCell>
-                                <TableCell>Email</TableCell>
-                                <TableCell>Actions</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-
-                            {students.map(student => <StudentTableRow key={student.uuid} student={student}/>)}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                {isLoading ? <Loader/> :
+                    <TableContainer component={Paper}>
+                        <Table size={"small"}>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell></TableCell>
+                                    <TableCell>First Name</TableCell>
+                                    <TableCell>Last Name</TableCell>
+                                    <TableCell>Gender</TableCell>
+                                    <TableCell>Email</TableCell>
+                                    <TableCell>Actions</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {students.map(student => <StudentTableRow key={student.uuid} student={student}/>)}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>}
             </Box>
         </Box>
     )
