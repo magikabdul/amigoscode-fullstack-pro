@@ -36,4 +36,5 @@ mvnw
 mvnw.cmd
 
 node_modules/
+node/
 
