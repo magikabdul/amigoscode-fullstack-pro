@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Box, makeStyles, Typography} from "@material-ui/core";
 import {MainMenu, StudentsTable, TeamsTable} from "../../components";
 
-import logo from "../../assets/logo.JPG"
+import logo from "../../assets/logo.jpg"
 
 const useStyles = makeStyles((theme) => ({
     root: {
