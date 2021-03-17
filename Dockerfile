@@ -1,4 +1,4 @@
-FROM maven:3.6.3-jdk-15 AS builder
+FROM maven:3.6.3-openjdk-15 AS builder
 WORKDIR /code
 COPY pom.xml /code/pom.xml
 RUN mvn dependency:go-offline
@@ -9,7 +9,7 @@ RUN mkdir -p target/dependency
 WORKDIR /code/target/dependency
 RUN jar -xf ../*.jar
 
-FROM openjdk:15-jre-slim
+FROM openjdk:15.0-jdk-slim
 EXPOSE 8080
 VOLUME /tmp
 ARG DEPENDENCY=/code/target/dependency
