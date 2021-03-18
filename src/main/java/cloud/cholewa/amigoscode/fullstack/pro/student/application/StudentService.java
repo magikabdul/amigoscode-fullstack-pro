@@ -18,4 +18,19 @@ public class StudentService implements StudentUseCase {
     public List<Student> findAll() {
         return studentRepository.findAll();
     }
+
+    @Override
+    public Student addStudent(CreateStudentCommand createStudentCommand) {
+        Student student = toStudent(createStudentCommand);
+        return studentRepository.save(student);
+    }
+
+    private Student toStudent(CreateStudentCommand createStudentCommand) {
+        return new Student(
+                createStudentCommand.getFirstName(),
+                createStudentCommand.getLastName(),
+                createStudentCommand.getEmail(),
+                createStudentCommand.getGender()
+        );
+    }
 }
