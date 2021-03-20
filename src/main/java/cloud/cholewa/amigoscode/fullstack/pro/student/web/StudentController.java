@@ -36,6 +36,12 @@ public class StudentController {
         return ResponseEntity.created(createStudentURI(student)).build();
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
+        studentService.removeStudent(id);
+        return ResponseEntity.noContent().build();
+    }
+
     @Data
     private static class RestCreateStudent {
         @NotEmpty(message = "First Name cannot be empty")

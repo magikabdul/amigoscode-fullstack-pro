@@ -20,7 +20,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import {blue} from "@material-ui/core/colors";
 
 const Alert = (props) => {
-    return <MuiAlert {...props}/>
+    return <MuiAlert elevation={6} variant={"filled"} {...props}/>
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -68,7 +68,7 @@ function StudentsTable() {
                 setIsLoading(false)
                 setServerError(true)
                 setServerErrorMessage(e.toString().slice(7))
-                })
+            })
     }, [])
 
     return (
@@ -92,13 +92,13 @@ function StudentsTable() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {students.map(student => <StudentTableRow key={student.uuid} student={student}/>)}
+                                {students.map(student => <StudentTableRow key={student.uuid} student={student} setStudents={setStudents}/>)}
                             </TableBody>
                         </Table>
                     </TableContainer>}
             </Box>
 
-            <CreateNewStudent showForm={showForm} setShowForm={setShowForm}/>
+            <CreateNewStudent showForm={showForm} setShowForm={setShowForm} setStudents={setStudents}/>
 
             <Snackbar
                 open={serverError}
