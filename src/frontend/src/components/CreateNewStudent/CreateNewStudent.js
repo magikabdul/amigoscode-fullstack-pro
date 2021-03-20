@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function CreateNewStudent({showForm, setShowForm}) {
+function CreateNewStudent({showForm, setShowForm, setStudents}) {
     const classes = useStyles();
 
     return (
@@ -98,6 +98,7 @@ function CreateNewStudent({showForm, setShowForm}) {
                                 .then(() => {
                                     setSubmitting(false);
                                     setShowForm(false);
+                                    STUDENT_SERVICE.getAllStudents().then(students => setStudents(students))
                                 })
                                 .catch((e) => console.log("error:" + e))
                         }}

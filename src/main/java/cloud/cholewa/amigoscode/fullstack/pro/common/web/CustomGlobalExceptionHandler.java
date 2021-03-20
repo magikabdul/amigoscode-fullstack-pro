@@ -1,15 +1,13 @@
 package cloud.cholewa.amigoscode.fullstack.pro.common.web;
 
+import cloud.cholewa.amigoscode.fullstack.pro.common.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
@@ -24,6 +22,13 @@ public class CustomGlobalExceptionHandler {
                 .collect(Collectors.toList());
 
         return handleError(HttpStatus.BAD_REQUEST, errors);
+    }
+
+    @ExceptionHandler(ObjectNotFoundException.class)
+    public ResponseEntity<Object> handleObjectNotFoundException(ObjectNotFoundException e) {
+        List<String> errors = Collections.singletonList(e.getMessage());
+
+        return handleError(HttpStatus.NOT_FOUND, errors);
     }
 
     private ResponseEntity<Object> handleError(HttpStatus status, List<String> errors) {
