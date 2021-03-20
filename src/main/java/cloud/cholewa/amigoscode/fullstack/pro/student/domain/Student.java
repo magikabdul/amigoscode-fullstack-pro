@@ -1,4 +1,4 @@
-package cloud.cholewa.amigoscode.fullstack.pro.student.db;
+package cloud.cholewa.amigoscode.fullstack.pro.student.domain;
 
 import cloud.cholewa.amigoscode.fullstack.pro.common.jpa.BaseEntity;
 import lombok.Getter;

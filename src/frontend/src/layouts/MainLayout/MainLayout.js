@@ -55,6 +55,7 @@ function MainLayout() {
             <MainMenu setShow={setShow}/>
             <Box className={classes.container}>
                 <Box className={classes.header}/>
+
                 {show && <StudentsTable/>}
                 {!show && <TeamsTable/>}
                 <Box className={classes.footer}>
