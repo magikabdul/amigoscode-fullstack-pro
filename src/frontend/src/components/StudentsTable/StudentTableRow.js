@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import {Avatar, Button, ButtonGroup, makeStyles, TableCell, TableRow} from "@material-ui/core";
 import {deepPurple} from "@material-ui/core/colors";
+import DeleteStudent from "../DeleteStudent/DeleteStudent";
 
-const useStyles = makeStyles( (theme) => ({
+const useStyles = makeStyles((theme) => ({
     row: {},
 
     avatar: {
@@ -14,14 +15,15 @@ const useStyles = makeStyles( (theme) => ({
     }
 }))
 
-export function StudentTableRow({student: {id, firstName, lastName, gender, email}}) {
+export function StudentTableRow({student: {id, firstName, lastName, gender, email}, setStudents}) {
     const classes = useStyles();
+    const [showDelete, setShowDelete] = useState(false);
 
     const getAvatarName = () => {
         return firstName.charAt(0).toUpperCase() + lastName.charAt(0).toUpperCase();
     }
 
-    return(
+    return (
         <TableRow className={classes.row}>
             <TableCell><Avatar className={classes.avatar}>{getAvatarName()}</Avatar></TableCell>
             <TableCell>{firstName}</TableCell>
@@ -31,9 +33,17 @@ export function StudentTableRow({student: {id, firstName, lastName, gender, emai
             <TableCell>
                 <ButtonGroup size={"small"}>
                     <Button variant={"outlined"} color={"primary"}>Edit</Button>
-                    <Button variant={"outlined"} color={"secondary"}>Delete</Button>
+                    <Button variant={"outlined"} color={"secondary"} onClick={() => setShowDelete(true)}>Delete</Button>
                 </ButtonGroup>
             </TableCell>
+            <DeleteStudent
+                showDelete={showDelete}
+                setShowDelete={setShowDelete}
+                id={id}
+                firstName={firstName}
+                lastName={lastName}
+                setStudents={setStudents}
+            />
         </TableRow>
     )
 }

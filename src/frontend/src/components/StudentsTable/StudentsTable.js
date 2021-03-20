@@ -92,7 +92,7 @@ function StudentsTable() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {students.map(student => <StudentTableRow key={student.uuid} student={student}/>)}
+                                {students.map(student => <StudentTableRow key={student.uuid} student={student} setStudents={setStudents}/>)}
                             </TableBody>
                         </Table>
                     </TableContainer>}

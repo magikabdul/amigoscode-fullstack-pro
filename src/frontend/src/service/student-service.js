@@ -17,18 +17,27 @@ const STUDENT_SERVICE = (function () {
     }
 
     const addStudent = (values) => {
-        return fetch("students" , {
+        return fetch("students", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(values)
         })
+            .then(checkStatus)
+    }
+
+    const removeStudent = (id) => {
+        return fetch(`students/${id}`, {
+            method: "DELETE"
+        })
+            .then(checkStatus)
     }
 
     return {
         getAllStudents,
         addStudent,
+        removeStudent,
     }
 })();
 
